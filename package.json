@@ -1,9 +1,24 @@
 {
-  "name": "reach",
+  "name": "@amanuel-tesfaye-r/reach",
   "version": "1.0.0",
   "description": "Text your PC, files, shell, and local AI persona from Telegram 24/7. Self-healing daemon, local voice I/O, and live system telemetry.",
   "main": "src/bridge.mjs",
   "type": "module",
+  "files": [
+    "src",
+    "scripts",
+    "docs",
+    "config.example.json",
+    ".env.example",
+    "requirements.txt",
+    "README.md",
+    "LICENSE",
+    "SECURITY.md",
+    "VISION.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "start": "node src/supervisor.mjs",
     "bridge": "node src/bridge.mjs",
