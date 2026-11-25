@@ -1,6 +1,6 @@
 # Vision: Reach
 
-> Your PC and its configured AI persona, always within reach.
+> Your PC and its configured AI agent, always within reach.
 
 ## Why Reach Exists
 
