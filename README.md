@@ -1,44 +1,43 @@
-# Agent Telegram Bridge
+# Reach
 
-[![CI](https://github.com/Amanuel-Tesfaye-R/agent-telegram-bridge/actions/workflows/lint-and-test.yml/badge.svg)](https://github.com/Amanuel-Tesfaye-R/agent-telegram-bridge/actions)
+[![CI](https://github.com/Amanuel-Tesfaye-R/reach/actions/workflows/lint-and-test.yml/badge.svg)](https://github.com/Amanuel-Tesfaye-R/reach/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-18%2B-green.svg)](https://nodejs.org/)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-yellow.svg)](https://python.org/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-Production-grade bi-directional Telegram bridge connecting autonomous AI coding agents (Antigravity, Claude Code, Gemini CLI, OpenCode) to your mobile phone.
+**Text your PC. Text your AI. Get answers right from your desktop 24/7.**
 
-Features real-time Mobile HUD progress streaming, zero-latency local voice transcription (faster-whisper), natural speech synthesis (Edge-TTS), host telemetry, self-healing supervisor daemons, and proactive morning/evening briefings.
+Reach turns Telegram into a direct, always-on portal into your personal computer and the local AI coding agent persona running on it. Inspect live telemetry, pull screenshots and files, run zero-token shell checks, or talk to your desktop agent by text or voice from anywhere.
 
 ---
 
-## Key Features
+## Core Capabilities
 
-- **Bi-Directional Agent Telemetry:** Stream agent prompts, tool executions, and file edits directly to Telegram with progress bars and dynamic HUD message edits.
-- **Local Whisper Voice Engine:** Fast voice note transcription using `faster-whisper` running locally on CPU with int8 quantization.
-- **Edge Speech Synthesis:** Convert agent replies into native Telegram Opus voice notes using Microsoft Edge Neural TTS.
-- **Self-Healing Supervisor Daemon:** Automatic crash detection and exponential backoff restart loops for 24/7 background operation.
-- **Host Metrics & Remote Telemetry:** Inspect live CPU load, RAM utilization, storage thresholds, battery state, and active terminal sessions.
-- **Direct Shell Execution:** Instant remote shell commands via `/sh <cmd>` for rapid diagnostic actions without incurring LLM token costs.
-- **Sentinel Upstream Watchdog:** Automated tracking of external PRs and issues across open-source dependencies with proactive push alerts.
+- **Desktop Persona in Your Pocket:** Routes messages straight to your configured local AI agent CLI (Antigravity, Claude Code, Gemini CLI, OpenCode) so your custom rules, memory, and personality work identically on mobile.
+- **Direct PC & File Access:** Capture multi-monitor screenshots, switch active project directories, check git status, pull physical files from disk, and run instant shell commands via `/sh <cmd>`.
+- **Two-Way Local Voice I/O:** Transcribes voice notes locally on CPU with `faster-whisper` (int8 quantization) and sends natural Opus voice replies via Edge Neural TTS.
+- **24/7 Self-Healing Daemon:** `supervisor.mjs` monitors `bridge.mjs` continuously with single-instance PID locks and exponential backoff restarts.
+- **Proactive Briefings & Alerts:** Scheduled morning/evening system briefings, battery/disk floor warnings, and upstream GitHub PR/issue tracking via Sentinel.
 
 ---
 
 ## Architecture
 
 ```
- Mobile Telegram App
-         |
-         v (HTTPS Webhook / Long Polling)
- [ src/bridge.mjs ] <=======> [ src/supervisor.mjs ] (Daemon watchdog)
-         |
-         +---> [ src/telemetry.ps1 ]       -> Host CPU/RAM/Battery metrics
-         +---> [ src/capture-screen.ps1 ]  -> Desktop screen capture
-         +---> [ src/whisper_worker.py ]   -> Local faster-whisper speech-to-text
-         +---> [ src/speak.py ]            -> Edge-TTS text-to-speech audio
-         +---> [ src/sentinel.mjs ]        -> Upstream PR & issue monitor
-         |
-         v (Stdio / Process Stream)
- [ Local Agent CLI ] (Antigravity / Claude Code / Gemini)
+ Mobile Telegram Client
+          |
+          v  (Long Polling + Mobile HUD Keyboards)
+  [ src/bridge.mjs ] <======> [ src/supervisor.mjs ] (24/7 Watchdog)
+          |
+          +---> [ src/telemetry.ps1 ]       -> Host CPU / RAM / Disk / Battery
+          +---> [ src/capture-screen.ps1 ]  -> Desktop Screenshot Capture
+          +---> [ src/whisper_worker.py ]   -> Local faster-whisper STT
+          +---> [ src/speak.py ]            -> Edge-TTS Opus Voice Replies
+          +---> [ src/sentinel.mjs ]        -> Upstream PR & Issue Monitor
+          |
+          v  (Local Workspace + Persona Context)
+  [ Local Agent CLI & Workstation Shell ]
 ```
 
 ---
@@ -47,106 +46,95 @@ Features real-time Mobile HUD progress streaming, zero-latency local voice trans
 
 ### 1. Prerequisites
 - **Node.js:** 18.0.0 or higher
-- **Python:** 3.10 or higher
-- **FFmpeg:** Installed and added to system PATH (required for audio conversion)
+- **Python:** 3.10 or higher (optional, for voice I/O)
+- **FFmpeg:** Installed in system PATH (optional, for Opus voice conversion)
 - A Telegram Bot token from [@BotFather](https://t.me/BotFather)
 
-### 2. Installation
-
-Clone the repository and install dependencies:
+### 2. Clone & Setup
 
 ```bash
-git clone https://github.com/Amanuel-Tesfaye-R/agent-telegram-bridge.git
-cd agent-telegram-bridge
+git clone https://github.com/Amanuel-Tesfaye-R/reach.git
+cd reach
 
-# Install Node dependencies
-npm install
+# Scaffold .env and config.json from templates
+npm run setup
+```
 
-# Setup Python voice environment
+Optional voice environment setup:
+
+```bash
 python -m venv .venv
-# On Windows:
+# Windows:
 .venv\Scripts\activate
-# On Linux/macOS:
+# Linux/macOS:
 source .venv/bin/activate
 
 pip install -r requirements.txt
 ```
 
-### 3. Configuration
+### 3. Configure & Verify
 
-Copy the example configuration:
+Add your `TELEGRAM_BOT_TOKEN`, `ALLOWED_CHAT_ID`, and `AGENT_CLI_PATH` in `config.json` or `.env`, then run preflight diagnostics and unit tests:
 
 ```bash
-cp .env.example .env
-# Or copy config.example.json to config.json
-cp config.example.json config.json
+npm run verify
+npm test
 ```
 
-Populate your `.env` or `config.json`:
-- `TELEGRAM_BOT_TOKEN`: The bot API token provided by BotFather.
-- `ALLOWED_CHAT_ID`: Your numerical Telegram user/chat ID (only authorized requests will be processed).
-- `AGENT_CLI_PATH`: Path or alias of your agent executable (e.g. `agy`, `claude`).
-
-### 4. Running the Bridge
-
-Start the bridge with self-healing supervision:
+### 4. Start Reach 24/7
 
 ```bash
 npm start
 ```
 
-Or run the bridge script directly:
-
-```bash
-npm run bridge
-```
-
 ---
 
-## Mobile Slash Commands
+## Mobile Commands
 
 | Command | Action |
 | :--- | :--- |
-| `/status` | View system health, battery, CPU, RAM, and active sessions |
-| `/screenshot` | Capture and deliver an instant desktop screenshot |
-| `/projects` | Switch active workspace directories on the host PC |
-| `/git` | View git status across active repositories |
-| `/sh <cmd>` | Execute a PowerShell / shell command instantly (0 tokens) |
-| `/fresh` | Toggle fresh session start on the next prompt |
-| `/voice` | Toggle voice response mode (`auto`, `on`, `off`) |
-| `/briefing` | Trigger an on-demand system and schedule briefing |
-| `/sentinel` | Run immediate audit on watched upstream PRs |
+| `/status` | Live CPU, RAM, disk, battery, and active agent session telemetry |
+| `/screenshot` | Capture and send an instant desktop screenshot |
+| `/projects` | Browse and switch active project directories on your PC |
+| `/git` | Check git status across active repositories |
+| `/sh <cmd>` | Execute a shell command immediately (0 LLM tokens) |
+| `/fresh` | Start the next conversation in a clean session |
+| `/voice` | Toggle voice reply mode (`auto`, `on`, `off`) |
+| `/briefing` | Trigger an on-demand system and reminder briefing |
+| `/sentinel` | Run an immediate check on watched upstream PRs/issues |
 
 ---
 
 ## Project Structure
 
 ```
-agent-telegram-bridge/
-├── .github/              # CI workflows and issue templates
+reach/
+├── .github/              # CI workflows, issue forms, and PR template
+├── scripts/
+│   ├── setup.mjs         # One-command .env and config.json bootstrap
+│   └── verify.mjs        # Runtime, binary, and syntax verifier
 ├── src/
-│   ├── bridge.mjs         # Core Telegram bot and agent process engine
-│   ├── supervisor.mjs     # Daemon watchdog with exponential backoff
-│   ├── notify.mjs         # Standalone Telegram alert dispatcher
-│   ├── sentinel.mjs       # Upstream pull request and issue watchdog
-│   ├── telemetry.ps1      # Host metrics extractor
-│   ├── capture-screen.ps1 # Multi-monitor screenshot utility
-│   ├── whisper_worker.py  # Persistent faster-whisper transcription worker
-│   └── speak.py           # Edge-TTS speech generator
-├── .env.example           # Environment template
-├── config.example.json    # JSON configuration template
-├── package.json           # Node configuration and scripts
-├── requirements.txt       # Python voice dependencies
-└── README.md
+│   ├── bridge.mjs        # Core Telegram portal and local agent runner
+│   ├── supervisor.mjs    # 24/7 crash-recovery watchdog
+│   ├── notify.mjs        # Reminders, product tracking, and alert dispatcher
+│   ├── sentinel.mjs      # Upstream PR & issue monitor
+│   ├── telemetry.ps1     # Host system metrics extractor
+│   ├── capture-screen.ps1# Desktop screenshot utility
+│   ├── whisper_worker.py # Persistent local faster-whisper worker
+│   └── speak.py          # Edge-TTS Opus speech synthesizer
+├── tests/
+│   └── reach.test.mjs    # Unit test suite (node --test)
+├── VISION.md             # Product philosophy
+├── SECURITY.md           # Allowlist and privacy safeguards
+├── CONTRIBUTING.md       # Contributor setup and PR rules
+└── package.json
 ```
 
 ---
 
-## Security & Privacy
+## Security
 
-- **Authorized Access Only:** The bridge enforces strict single-user verification using `ALLOWED_CHAT_ID`. Unrecognized IDs are ignored.
-- **Zero Cloud Audio Leakage:** Voice transcription runs locally via `faster-whisper` on your hardware without sending raw audio to third-party APIs.
-- **Single-Instance Locks:** Process ID lockfiles (`bridge.pid`, `supervisor.pid`) prevent duplicate process execution.
+Reach enforces strict single-user `ALLOWED_CHAT_ID` verification, keeps voice transcription 100% local, and blocks lock-screen captures automatically. Read [SECURITY.md](SECURITY.md) before deploying on an unattended workstation.
 
 ---
 

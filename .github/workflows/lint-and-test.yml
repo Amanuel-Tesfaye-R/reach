@@ -9,15 +9,16 @@ on:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20, 22]
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Node.js
+      - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-      - name: Syntax Check Core Modules
+          node-version: ${{ matrix.node-version }}
+      - name: Run Verification & Unit Tests
         run: |
-          node --check src/bridge.mjs
-          node --check src/supervisor.mjs
-          node --check src/notify.mjs
-          node --check src/sentinel.mjs
+          npm run verify
+          npm test

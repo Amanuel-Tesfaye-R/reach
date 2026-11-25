@@ -1,37 +1,37 @@
 {
-  "name": "agent-telegram-bridge",
+  "name": "reach",
   "version": "1.0.0",
-  "description": "Enterprise-grade Telegram bridge for autonomous AI coding agents with voice I/O, live telemetry, and self-healing supervision.",
+  "description": "Text your PC, files, shell, and local AI persona from Telegram 24/7. Self-healing daemon, local voice I/O, and live system telemetry.",
   "main": "src/bridge.mjs",
   "type": "module",
   "scripts": {
     "start": "node src/supervisor.mjs",
     "bridge": "node src/bridge.mjs",
-    "test": "node --check src/bridge.mjs src/supervisor.mjs src/notify.mjs src/sentinel.mjs"
+    "setup": "node scripts/setup.mjs",
+    "verify": "node scripts/verify.mjs",
+    "test": "node --check src/bridge.mjs src/supervisor.mjs src/notify.mjs src/sentinel.mjs scripts/setup.mjs scripts/verify.mjs && node --test tests/*.test.mjs"
   },
   "keywords": [
-    "ai",
-    "agent",
+    "reach",
+    "ai-agent",
     "telegram",
-    "telegram-bot",
-    "antigravity",
-    "claude-code",
-    "gemini",
+    "remote-pc",
     "whisper",
-    "tts",
+    "edge-tts",
     "telemetry",
-    "devops"
+    "daemon",
+    "developer-tools"
   ],
-  "author": "Aman Tesfaye <https://github.com/Amanuel-Tesfaye-R>",
+  "author": "Amanuel Tesfaye <https://github.com/Amanuel-Tesfaye-R>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Amanuel-Tesfaye-R/agent-telegram-bridge.git"
+    "url": "git+https://github.com/Amanuel-Tesfaye-R/reach.git"
   },
   "bugs": {
-    "url": "https://github.com/Amanuel-Tesfaye-R/agent-telegram-bridge/issues"
+    "url": "https://github.com/Amanuel-Tesfaye-R/reach/issues"
   },
-  "homepage": "https://github.com/Amanuel-Tesfaye-R/agent-telegram-bridge#readme",
+  "homepage": "https://github.com/Amanuel-Tesfaye-R/reach#readme",
   "engines": {
     "node": ">=18.0.0"
   }

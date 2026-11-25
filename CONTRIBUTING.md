@@ -1,31 +1,33 @@
-# Contributing to Agent Telegram Bridge
+# Contributing to Reach
 
-Thank you for your interest in contributing!
+Thank you for contributing to **Reach**.
 
 ## Development Setup
 
-1. Fork and clone the repository.
-2. Install Node.js dependencies:
+1. Fork and clone the repository:
    ```bash
-   npm install
+   git clone https://github.com/Amanuel-Tesfaye-R/reach.git
+   cd reach
    ```
-3. Setup the Python voice virtual environment:
+2. Bootstrap local configuration:
+   ```bash
+   npm run setup
+   ```
+3. Optional Python voice environment:
    ```bash
    python -m venv .venv
-   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   # Windows: .venv\Scripts\activate
+   # Linux/macOS: source .venv/bin/activate
    pip install -r requirements.txt
    ```
-4. Copy configuration template:
+4. Verify syntax, runtime bins, and unit tests:
    ```bash
-   cp .env.example .env
-   ```
-5. Run syntax checks:
-   ```bash
+   npm run verify
    npm test
    ```
 
 ## Pull Request Guidelines
 
-- Ensure your branch is up to date with `main`.
-- Never commit private tokens, chat IDs, or personal directory paths.
-- Write clear commit messages and describe changes in your PR.
+- Keep `config.json`, `.env`, logs, and personal paths out of commits.
+- Add unit tests in `tests/` for new parsing, scheduling, or routing logic.
+- Update `README.md` or `SECURITY.md` when introducing new remote commands or capabilities.

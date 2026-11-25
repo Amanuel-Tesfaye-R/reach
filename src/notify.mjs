@@ -19,7 +19,7 @@ function loadConfig() {
   return cfg;
 }
 
-function parseNaturalTime(str) {
+export function parseNaturalTime(str) {
   if (!str) return null;
   const now = new Date();
   const lower = str.toLowerCase().trim();
