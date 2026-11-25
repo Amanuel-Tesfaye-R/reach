@@ -52,7 +52,20 @@ Reach turns your personal computer and the AI companion living on it into an alw
 - **FFmpeg:** Installed in system PATH (optional, for Opus voice conversion)
 - A Telegram Bot token from [@BotFather](https://t.me/BotFather)
 
-### 2. Clone & Setup
+### 2. Install
+
+#### Option A: Install via GitHub Packages (npm)
+
+```bash
+# Point the owner scope to GitHub Packages (or add to .npmrc)
+echo "@amanuel-tesfaye-r:registry=https://npm.pkg.github.com" >> .npmrc
+
+npm install @amanuel-tesfaye-r/reach
+```
+
+*(Or run directly without editing `.npmrc`: `npm install @amanuel-tesfaye-r/reach --registry=https://npm.pkg.github.com`)*
+
+#### Option B: Clone & Run Standalone
 
 ```bash
 git clone https://github.com/Amanuel-Tesfaye-R/reach.git
