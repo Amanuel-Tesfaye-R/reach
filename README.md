@@ -6,19 +6,19 @@
 [![Python](https://img.shields.io/badge/Python-3.10%2B-yellow.svg)](https://python.org/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-**Text your PC. Text your AI. Get answers right from your desktop 24/7.**
+**Your PC and its configured AI persona, always within reach.**
 
-Reach turns Telegram into a direct, always-on portal into your personal computer and the local AI coding agent persona running on it. Inspect live telemetry, pull screenshots and files, run zero-token shell checks, or talk to your desktop agent by text or voice from anywhere.
+Reach turns your personal computer and the AI companion living on it into an always-on presence inside Telegram. Your configured personality, long-term memory, workspace rules, files, screenshots, and full desktop execution stay at your fingertips 24/7, responding directly from your own rig.
 
 ---
 
 ## Core Capabilities
 
-- **Desktop Persona in Your Pocket:** Routes messages straight to your configured local AI agent CLI (Antigravity, Claude Code, Gemini CLI, OpenCode) so your custom rules, memory, and personality work identically on mobile.
-- **Direct PC & File Access:** Capture multi-monitor screenshots, switch active project directories, check git status, pull physical files from disk, and run instant shell commands via `/sh <cmd>`.
-- **Two-Way Local Voice I/O:** Transcribes voice notes locally on CPU with `faster-whisper` (int8 quantization) and sends natural Opus voice replies via Edge Neural TTS.
-- **24/7 Self-Healing Daemon:** `supervisor.mjs` monitors `bridge.mjs` continuously with single-instance PID locks and exponential backoff restarts.
-- **Proactive Briefings & Alerts:** Scheduled morning/evening system briefings, battery/disk floor warnings, and upstream GitHub PR/issue tracking via Sentinel.
+- **Desktop Persona, Unbroken on Mobile:** Connects straight to the local AI agent configured on your machine (Antigravity, Claude Code, Gemini CLI, OpenCode), carrying your exact personality, rules, and workspace context directly into Telegram.
+- **Full Machine Agency from Anywhere:** Ask your AI to inspect projects, run tasks on your desktop, capture screenshots, transfer physical files straight from disk, or run instant shell diagnostics.
+- **Natural Two-Way Voice:** Speak freely over Telegram voice notes with local `faster-whisper` transcription and receive spoken replies synthesized with Edge Neural TTS.
+- **24/7 Self-Healing Presence:** Backed by a continuous process supervisor with single-instance locks and exponential backoff restarts so your machine remains reachable year-round.
+- **Proactive Rig Awareness:** Delivers scheduled morning/evening briefings, disk and battery health warnings, reminders, and upstream GitHub PR tracking via Sentinel.
 
 ---
 

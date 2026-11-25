@@ -1,13 +1,13 @@
 # Vision: Reach
 
-> Text your PC. Text your AI. Stay connected to your machine and its resident persona 24/7.
+> Your PC and its configured AI persona, always within reach.
 
 ## Why Reach Exists
 
-Most mobile AI apps give you a stateless chatbot trapped in a cloud sandbox. Meanwhile, your real work lives on your workstation: your repositories, your local files, your shell environment, and the customized AI persona and rules you configured on disk.
+Most mobile AI apps trap you inside a stateless cloud sandbox. Meanwhile, your real environment lives on your personal computer: your repositories, your files, your running software, and the AI persona, memory, and rules you tailored to how you work.
 
-**Reach** collapses that distance. It turns your personal computer into a contact you can text or talk to anytime from Telegram:
+**Reach** dissolves the boundary between your phone and your desk. It makes your workstation and its resident AI directly reachable through Telegram 24/7:
 
-1. **Your PC, Always Within Reach:** Grab screenshots, inspect live CPU/RAM/battery telemetry, pull files from disk, or run instant zero-token shell checks without sitting at your desk.
-2. **Your Configured AI Persona, Intact:** Because Reach drives your local agent CLI directly on your hardware, every persona rule, memory file, and workspace convention travels straight into your Telegram thread.
-3. **Built to Run 24/7:** Supervised by an auto-restarting watchdog with exponential backoff, scheduled briefings, proactive disk/battery alerts, and upstream PR/issue monitoring.
+1. **Same Persona, Every Screen:** When you message Telegram, you are talking to the exact AI ally configured on your PC, with full access to your local identity files, preferences, and project history.
+2. **Real Execution on Your Rig:** Ask your AI to inspect a codebase, grab a screenshot, send you a document from disk, or run terminal workflows directly on your machine while you are away.
+3. **Always On, Year-Round:** Protected by a self-healing supervisor daemon, single-instance locking, proactive briefings, and system telemetry so your PC stays responsive whenever you text it.

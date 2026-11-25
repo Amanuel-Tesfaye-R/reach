@@ -1,7 +1,7 @@
 {
   "name": "@amanuel-tesfaye-r/reach",
   "version": "1.0.0",
-  "description": "Text your PC, files, shell, and local AI persona from Telegram 24/7. Self-healing daemon, local voice I/O, and live system telemetry.",
+  "description": "Your PC and its configured AI persona, always within reach. Carry your desktop identity, memory, files, and full workstation execution into Telegram 24/7.",
   "main": "src/bridge.mjs",
   "type": "module",
   "files": [
