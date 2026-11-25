@@ -26,20 +26,16 @@ Reach turns your personal computer and the AI companion living on it into an alw
 
 ## Architecture
 
-```
- Mobile Telegram Client
-          |
-          v  (Long Polling + Mobile HUD Keyboards)
-  [ src/bridge.mjs ] <======> [ src/supervisor.mjs ] (24/7 Watchdog)
-          |
-          +---> [ src/telemetry.ps1 ]       -> Host CPU / RAM / Disk / Battery
-          +---> [ src/capture-screen.ps1 ]  -> Desktop Screenshot Capture
-          +---> [ src/whisper_worker.py ]   -> Local faster-whisper STT
-          +---> [ src/speak.py ]            -> Edge-TTS Opus Voice Replies
-          +---> [ src/sentinel.mjs ]        -> Upstream PR & Issue Monitor
-          |
-          v  (Local Workspace + Persona Context)
-  [ Local Agent CLI & Workstation Shell ]
+```mermaid
+flowchart TD
+    Mobile["Telegram Mobile App"] -->|"Voice, Text, Commands"| Bridge["src/bridge.mjs (Portal Engine)"]
+    Supervisor["src/supervisor.mjs (24/7 Watchdog)"] <-->|"PID Lock & Auto-Restart"| Bridge
+    Bridge --> Telemetry["src/telemetry.ps1 (System Metrics)"]
+    Bridge --> Screen["src/capture-screen.ps1 (Desktop Capture)"]
+    Bridge --> Whisper["src/whisper_worker.py (Local STT)"]
+    Bridge --> TTS["src/speak.py (Edge-TTS Opus)"]
+    Bridge --> Sentinel["src/sentinel.mjs (GitHub Monitor)"]
+    Bridge -->|"Full Context & Files"| Agent["Local AI Agent & Workstation Shell"]
 ```
 
 ---
@@ -150,6 +146,12 @@ reach/
 ## Security
 
 Reach enforces strict single-user `ALLOWED_CHAT_ID` verification, keeps voice transcription 100% local, and blocks lock-screen captures automatically. Read [SECURITY.md](SECURITY.md) before deploying on an unattended workstation.
+
+---
+
+## Ecosystem
+
+Paired with [Swappable Agent Framework](https://github.com/Amanuel-Tesfaye-R/swappable-agent-framework) (`@amanuel-tesfaye-r/swappable-agent-framework`) for decoupling foundation LLMs from persistent desktop identity and contracts.
 
 ---
 
