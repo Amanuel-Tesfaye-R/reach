@@ -152,4 +152,11 @@ agent-telegram-bridge/
 
 ## License
 
-This project is licensed under the MIT License: see the [LICENSE](LICENSE) file for details.
+[![License: MIT](https://img.shields.io/badge/License-MIT-2563eb?style=for-the-badge&labelColor=0f172a)](LICENSE)
+
+Copyright © 2026 **Amanuel Tesfaye**.  
+Open-source software distributed under the terms of the [MIT License](LICENSE).
+
+| Permissions | Conditions | Limitations |
+| :--- | :--- | :--- |
+| Commercial use, modification, distribution, and private use | License and copyright notice must be included | No liability or warranty |
