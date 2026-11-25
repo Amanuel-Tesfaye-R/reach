@@ -29,12 +29,20 @@
   "keywords": [
     "reach",
     "ai-agent",
+    "ai-agents",
+    "personal-ai-assistant",
     "telegram",
+    "telegram-bot",
     "remote-pc",
+    "remote-access",
+    "self-hosted",
+    "claude-code",
+    "gemini",
     "whisper",
     "edge-tts",
-    "daemon",
-    "developer-tools"
+    "voice-assistant",
+    "chatops",
+    "automation"
   ],
   "author": "Amanuel Tesfaye <https://github.com/Amanuel-Tesfaye-R>",
   "license": "MIT",
