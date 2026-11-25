@@ -1,0 +1,38 @@
+{
+  "name": "agent-telegram-bridge",
+  "version": "1.0.0",
+  "description": "Enterprise-grade Telegram bridge for autonomous AI coding agents with voice I/O, live telemetry, and self-healing supervision.",
+  "main": "src/bridge.mjs",
+  "type": "module",
+  "scripts": {
+    "start": "node src/supervisor.mjs",
+    "bridge": "node src/bridge.mjs",
+    "test": "node --check src/bridge.mjs src/supervisor.mjs src/notify.mjs src/sentinel.mjs"
+  },
+  "keywords": [
+    "ai",
+    "agent",
+    "telegram",
+    "telegram-bot",
+    "antigravity",
+    "claude-code",
+    "gemini",
+    "whisper",
+    "tts",
+    "telemetry",
+    "devops"
+  ],
+  "author": "Aman Tesfaye <https://github.com/Amanuel-Tesfaye-R>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amanuel-Tesfaye-R/agent-telegram-bridge.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Amanuel-Tesfaye-R/agent-telegram-bridge/issues"
+  },
+  "homepage": "https://github.com/Amanuel-Tesfaye-R/agent-telegram-bridge#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

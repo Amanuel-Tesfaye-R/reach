@@ -1,0 +1,18 @@
+{
+  "botToken": "YOUR_TELEGRAM_BOT_TOKEN",
+  "allowedChatId": 123456789,
+  "agyPath": "agy",
+  "workDir": ".",
+  "voiceMode": "auto",
+  "startFreshNext": false,
+  "alertsEnabled": true,
+  "diskAlertFloorGB": 25,
+  "batteryAlertFloor": 15,
+  "briefingEnabled": true,
+  "morningBriefingHour": 8,
+  "morningBriefingMinute": 30,
+  "eveningBriefingHour": 21,
+  "eveningBriefingMinute": 30,
+  "projectsRoot": "./projects",
+  "projectSessions": {}
+}

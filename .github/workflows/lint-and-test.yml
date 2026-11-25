@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Syntax Check Core Modules
+        run: |
+          node --check src/bridge.mjs
+          node --check src/supervisor.mjs
+          node --check src/notify.mjs
+          node --check src/sentinel.mjs

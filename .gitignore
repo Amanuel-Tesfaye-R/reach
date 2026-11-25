@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+
+# Local Config & Secrets
+config.json
+.env
+*.local
+
+# State, PIDs, & Runtime Logs
+*.pid
+*.log
+*.old
+sentinel-state.json
+reminders.json
+products.json
+stickers.json
+
+# Ephemeral Media & Screenshots
+received/
+*.png
+*.jpg
+*.ogg
+*.mp3
+*.wav
+
+# OS & Editor Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
