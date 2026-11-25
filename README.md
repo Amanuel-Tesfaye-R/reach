@@ -6,7 +6,7 @@
 [![Python](https://img.shields.io/badge/Python-3.10%2B-yellow.svg)](https://python.org/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-**Your PC and its configured AI persona, always within reach.**
+**Your PC and its configured AI agent, always within reach.**
 
 Reach turns your personal computer and the AI companion living on it into an always-on presence inside Telegram. Your configured personality, long-term memory, workspace rules, files, screenshots, and full desktop execution stay at your fingertips 24/7, responding directly from your own rig.
 
