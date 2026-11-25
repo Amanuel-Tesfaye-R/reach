@@ -21,6 +21,7 @@ stickers.json
 # Ephemeral Media & Screenshots
 received/
 *.png
+!.github/social-preview.png
 *.jpg
 *.ogg
 *.mp3

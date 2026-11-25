@@ -1,5 +1,7 @@
 # Reach
 
+![Reach: Your PC and its configured AI agent, always within reach](.github/social-preview.png)
+
 [![CI](https://github.com/Amanuel-Tesfaye-R/reach/actions/workflows/lint-and-test.yml/badge.svg)](https://github.com/Amanuel-Tesfaye-R/reach/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-18%2B-green.svg)](https://nodejs.org/)
